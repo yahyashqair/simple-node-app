@@ -1,6 +1,6 @@
 export enum EmailStatus {
-  NEW,
-  DELIVERED,
-  OPENED,
-  FAILED
+  NEW = 'New',
+  DELIVERED = 'Delivered',
+  OPENED = 'Opened',
+  FAILED = 'Failed',
 }
