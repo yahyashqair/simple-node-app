@@ -18,8 +18,9 @@ export class EmailsController {
   }
 
   @Get('notify/:id')
-  async notify(@Param('id') id: string, @Response() res: Res) {
-    await this.emailsService.notify(id);
+  async notify(@Param('id') email: string, @Response() res: Res) {
+    console.log(email);
+    await this.emailsService.notify(email);
     const buf = new Buffer([
       0x47, 0x49, 0x46, 0x38, 0x39, 0x61, 0x01, 0x00, 0x01, 0x00, 0x80, 0x00,
       0x00, 0xff, 0xff, 0xff, 0x00, 0x00, 0x00, 0x2c, 0x00, 0x00, 0x00, 0x00,

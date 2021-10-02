@@ -4,6 +4,7 @@ import { EmailStatus } from './EmailStatus';
 @Entity('emails')
 export class Email {
   @ObjectIdColumn() id: ObjectID;
-  @Column() email: string;
+
+  @Column({ unique: true }) email: string;
   @Column() status: EmailStatus;
 }

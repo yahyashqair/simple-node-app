@@ -31,7 +31,7 @@ export class EmailsService {
         text: 'welcome', // plaintext body
         html: `<b>welcome</b>     <img src="${
           process.env.SITE_URL
-        }/emails/notify/${email.id.toHexString()}" alt="World" />`, // HTML body content
+        }/emails/notify/${email.email}" alt="World" />`, // HTML body content
       })
       .then(() => {
         email.status = EmailStatus.DELIVERED;
@@ -47,10 +47,13 @@ export class EmailsService {
     // TODO
   }
 
-  async notify(id: string) {
-    const emailRecord = await this.emailsRepository.findOne(
-      ObjectID.createFromHexString(id),
-    );
+  async notify(email: string) {
+    console.log(email);
+    const emailRecord = await this.emailsRepository.findOne({
+      where: {
+        email: email,
+      },
+    });
     emailRecord.status = EmailStatus.OPENED;
     await this.emailsRepository.save(emailRecord);
   }
