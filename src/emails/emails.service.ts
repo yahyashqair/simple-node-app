@@ -29,7 +29,7 @@ export class EmailsService {
         from: 'noreply@yahya.com', // sender address
         subject: 'Testing Nest MailerModule ✔', // Subject line
         text: 'welcome', // plaintext body
-        html: `<b>welcome</b>     <img src="${process.env.SITE_URL}/emails/notify/${email.id.toString()}.png" alt="World" />`, // HTML body content
+        html: `<b>welcome</b>     <img src="${process.env.SITE_URL}/emails/notify/${email.id.toHexString()}.png" alt="World" />`, // HTML body content
       })
       .then(() => {
         email.status = EmailStatus.DELIVERED;
