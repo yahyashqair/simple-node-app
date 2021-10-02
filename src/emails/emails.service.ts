@@ -31,7 +31,7 @@ export class EmailsService {
         text: 'welcome', // plaintext body
         html: `<b>welcome</b>     <img src="${
           process.env.SITE_URL
-        }/emails/notify/${email.id.toHexString()}.png" alt="World" />`, // HTML body content
+        }/emails/notify/${email.id.toHexString()}" alt="World" />`, // HTML body content
       })
       .then(() => {
         email.status = EmailStatus.DELIVERED;
