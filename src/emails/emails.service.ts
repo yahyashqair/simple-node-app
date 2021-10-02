@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { SendEmailDto } from "./SendEmailDto";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Email } from "./email.entity";
-import { MongoRepository } from "typeorm";
+import { MongoRepository, ObjectID } from "typeorm";
 import { EmailStatus } from "./EmailStatus";
 import { MailerService } from "@nestjs-modules/mailer";
 
@@ -46,7 +46,7 @@ export class EmailsService {
   }
 
   async notify(id: string) {
-    const emailRecord = await this.emailsRepository.findOne(id);
+    const emailRecord = await this.emailsRepository.findOne(new ObjectID(id));
     emailRecord.status = EmailStatus.OPENED;
     await this.emailsRepository.save(emailRecord);
   }
